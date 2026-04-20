@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 //单例模式限定器
 public class SingleMonoBase<T> : MonoBehaviour where T : SingleMonoBase<T>
 {
