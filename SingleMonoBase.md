@@ -75,4 +75,3 @@ protected virtual void Awake()   有 void，后面有 () → 百分百是方法�
        INSTANCE = null;
     } 
 }
-```
