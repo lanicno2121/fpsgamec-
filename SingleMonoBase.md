@@ -45,7 +45,7 @@ SingleMonoBase      **“标识符“ 其实就是你自己起的名字的总称
 **点 .                                    可能是任何东西 要看后面跟什么决定                                                   后面跟括号是方法，后面跟名字是变量**
 
 举个例子 
-public class SingleMonoBase<T>   后面是 <T> → 它是类名
+**public class SingleMonoBase<T>   后面是 <T> → 它是类名**
 
 protected virtual void Awake()        后面是 () → 它是方法名
 
