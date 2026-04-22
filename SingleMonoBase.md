@@ -37,7 +37,7 @@ public class SingleMonoBase<T> : MonoBehaviour where T : SingleMonoBase<T>{
 **问**
 既然所有名字都是自己起的，那怎么判断是类名 还是变量 还是方法名呢
 **一**  **看它后面的**
-在代码里，名字后面跟着的东西决定了它的身份。
+在代码里，**名字后面跟着的东西**决定了它的身份。
 
 `< >`                                   **类名**
 `（）`                                  **方法名**
@@ -52,25 +52,22 @@ public class SingleMonoBase<T> : MonoBehaviour where T : SingleMonoBase<T>{
  `public static T INSTANCE`             **前面有 T，空格后才是它 → 它是变量名**
 
 **二：看它穿的衣服（修饰符）**
-名字前面的单词，就像是穿的衣服，也能暴露身份。
+**名字前面的单词，就像是穿的衣服**，也能暴露身份。
 
 `class` **类名**
 `void`, `int`, `string  `  **方法名 或 变量名**
-
-比如：
-`void`          **在名字前 且名字后有括号  方法** 
-`int`            **在名字前 且名字后无括号  变量**
-`public static`           **变量名**
+`public static`            **变量名**
 
 实战判断：
-public class SingleMonoBase<T>   有 class → 百分百是类名
-public static T INSTANCE;        有 static，后面没括号 → 百分百是变量名
-protected virtual void Awake()   有 void，后面有 () → 百分百是方法名
+`public class SingleMonoBase<T>`    **有 class → 百分百是类名**
+
+`public static T INSTANCE`              **有 static，后面没括号 → 百分百是变量名**
+`protected virtual void Awake()`     **有 void，后面有 () → 百分百是方法名**
 
 
 
 
-```
+
 public static T INSTANCE;
 protected virtual void Awake()
     {
@@ -85,5 +82,3 @@ protected virtual void OnDestroy()
     }
 }
 
-
-```
