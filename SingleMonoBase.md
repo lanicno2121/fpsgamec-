@@ -1,3 +1,5 @@
+
+=================================================
 ```csharp
 using System.Collections;
 using System.Collections.Generic;
@@ -25,8 +27,7 @@ using UnityEngine;
 - 如果没有借用这个工具箱，你的代码就瞎了，完全不知道游戏引擎里的任何东西。
 
 
-
-
+=================================================
 ```csharp
 public class SingleMonoBase<T> : MonoBehaviour where T : SingleMonoBase<T>{
 ```
@@ -34,6 +35,7 @@ public class SingleMonoBase<T> : MonoBehaviour where T : SingleMonoBase<T>{
 `class`                     **类**
 `SingleMonoBase`      **“标识符“ 其实就是你自己起的名字的总称 可以是变量 类名 方法名**  
 
+--------------------------------------------------------------
 **问**
 既然所有名字都是自己起的，那怎么判断是类名 还是变量 还是方法名呢
 **一**  **看它后面的**
@@ -64,10 +66,11 @@ public class SingleMonoBase<T> : MonoBehaviour where T : SingleMonoBase<T>{
 `public static T INSTANCE`              **有 static，后面没括号 → 百分百是变量名**
 `protected virtual void Awake()`     **有 void，后面有 () → 百分百是方法名**
 
+--------------------------------------------------------------
+`<T>`    
 
-
-
-
+=================================================
+```csharp
 public static T INSTANCE;
 protected virtual void Awake()
     {
@@ -81,4 +84,4 @@ protected virtual void OnDestroy()
         INSTANCE = null;
     }
 }
-
+```
