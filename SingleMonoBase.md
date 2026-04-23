@@ -474,6 +474,18 @@ protected virtual void OnDestroy()
 }
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
 #### 1. `protected virtual void Awake()`：诞生之初
 
 - **`Awake()`**：这是 Unity 引擎自带的魔法单词。意思是**“当这个物体刚刚出生、甚至还没睁开眼的第一帧”**。
