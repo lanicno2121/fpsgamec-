@@ -91,8 +91,8 @@ public class ZombieController : MonoBehaviour, IStateMachineOwner
 //角色状态机
 public class StateMachine
 {
-    private StateBase currentState;
-    private IStateMachineOwner owner;
+    private StateBase currentState;  //  脚本statebase
+    private IStateMachineOwner owner; //
     private Dictionary<Type, StateBase> stateDic = new Dictionary<Type, StateBase>();
 
     public StateMachine(IStateMachineOwner owner) {  this.owner = owner; }
