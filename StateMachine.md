@@ -133,14 +133,14 @@ public class StateMachine
 > 
 > **`public interface IStateMachineOwner {}`**
 > 
-> - **大白话**：这是一个“老板徽章”。任何想使用状态机的人（比如怪物本体、玩家本体），只要胸前挂上这个徽章，HR 就承认你是我的直属老板。
+> - **大白话**：这个 `IStateMachineOwner` 里面是空的，没有规定任何方法。所以它的作用就是：**谁在自己的类后面写上“: IStateMachineOwner”，谁就被贴上了这个标签。**
 >     
 > 
 > **三个核心变量：**
 > 
 > 1. `private StateBase currentState;`
 >     
->     - **大白话**：**“正在打工的那个倒霉蛋”**。HR 必须时刻盯着现在是谁在干活（比如现在是奔跑状态）。
+>     - **大白话**：`StateBase` 里写的那一堆东西，是在**画一张设计图纸**    只要是“状态”，必须会 `Init`、`Enter`、`Exit` 这几个动作。  图纸不是实物，图纸不能直接用。你不能拿着图纸说“你去给我站岗”，因为图纸只是纸。                                                                                                                                                                                                                             private StateBase currentState;这行代码**不是在引用图纸**，而是在**造一个储物格**。这个储物格上面贴了一个规定：**“本格子只能放符合 `StateBase` 图纸生产出来的实物”**。                                                                                                                                                                                        // 普通变量     public int Age;            // 我们写的这个变量                                                                                private StateBase currentState;                                                                                                                  1. 普通变量 `int Age`：存的是“实物本身”      `int` 是 C# 内置的一种非常简单的类型（值类型）当你写：int Age = 10;  `Age` 这个格子里，**直接放着数字 10**。就像你口袋里直接装着一块糖。这块糖是真实的、看得见摸得着的东西（在内存里是直接的数据）。                                                                                                                                                                    2. 特殊变量 `StateBase currentState`：存的是“地址标签”                           `StateBase` 是一个复杂的类。当你写：private StateBase currentState;`currentState` 这个格子里，**放的并不是状态本身**，而是**一张写着“状态在哪儿”的地址小纸条**。                                                         格子是空的（`null`），代表纸条是空白的，没指向任何地方。- 只有当代码执行了 `currentState = new WalkState();` 之后，你才造出了一个真正的状态（实物），然后**把实物的地址写在那张小纸条上，塞进 `currentState` 格子里**。                                                                                                                                                                                       那这有什么好处？（为什么非要贴“StateBase 图纸”的规定？）                  这是最关键的一点：因为贴了规定，大总管就不用管具体是什么状态了。   假设现在有三个具体的状态实物，都是按照你画的 `StateBase` 图纸生产的：1. **走路状态**（`WalkState`）：它的 `Enter()` 会播放走路声音。1. **待机状态**（`IdleState`）：它的 `Enter()` 会播放呼吸动画。1. **攻击状态**（`AttackState`）：它的 `Enter()` 会扣血。 在 `StateMachine` 里，`currentState` 储物格的纸条可以指向上面**任何一个实物**。当大总管状态机**`public class StateMachine`**要切换状态时，它只需要做一件事：// 不管纸条指向的是走路、待机还是攻击currentState.Exit();  // 叫现在这个出来currentState = 下一个状态; // 把纸条换成下一张currentState.Enter(); // 叫新这个进去  大总管根本不需要知道 `currentState` 是指向 `WalkState` 还是 `AttackState`，因为它知道：**不管是什么，既然你是按“StateBase 图纸”造的，你就一定会有 `Enter()` 和 `Exit()` 方法。** 叫就完事了。 
 >         
 > 2. `private IStateMachineOwner owner;`
 >     
