@@ -152,7 +152,7 @@ public class StateMachine
 >          这是一个**字段声明**，在 `StateMachine` 类中创建了一个叫 `stateDic` 的**字典**，用来存储所有已经创建过的状态对象。这个字典的**键**是状态的类型，**值**是对应的状态实例。 
 >          ### `Dictionary<Type, StateBase>`  Dictionary  泛型类 C# 内置的一种集合类型，中文叫“字典”。它的作用是根据一个“键”来查找对应的“值”。     
 >          <Type, StateBase> 泛型参数  尖括号里有两个参数，用逗号分开。第一个 `Type` 是**键的类型**，第二个 `StateBase` 是**值的类型**。
->          **字典的工作方式：**  就像一本通讯录。你给它一个名字（键），它告诉你对应的电话号码（值）。这里的键是 `Type`，意思是“状态的类型本身”（比如 `WalkState` 这个类型）。值是 `StateBase`，意思是“该类型对应的状态实例”。 `Type` 是 C# 内置的一个类，全名是 `System.Type`，它用来**描述其他类型的信息**。每一个你自己定义的类（比如 `StateBase`、`WalkState`），在程序运行时都会生成一个对应的 `Type` 对象，这个对象就相当于这个类的“身份证”。- `Type` 类型的变量里存放的不是具体的对象，而是**某个类本身的描述信息**。你可以通过 `typeof(类名)` 来获取这个身份证 ，Type t1 = typeof(WalkState);  // t1 存着 WalkState 这个类的身份信息  Type t2 = typeof(IdleState);  // t2 存着 IdleState 这个类的身份信息
+>          **字典的工作方式：**  就像一本通讯录。你给它一个名字（键），它告诉你对应的电话号码（值）。这里的键是 `Type`，意思是“状态的类型本身”（比如 `WalkState` 这个类型）。值是 `StateBase`，意思是“该类型对应的状态实例”。 `Type` 是 C# 内置的一个类，全名是 `System.Type`，它用来**描述其他类型的信息**。每一个你自己定义的类（比如 `StateBase`、`WalkState`），在程序运行时都会生成一个对应的 `Type` 对象，这个对象就相当于这个类的“身份证”。- `Type` 类型的变量里存放的不是具体的对象，而是**某个类本身的描述信息**。你可以通过 `typeof(类名)` 来获取这个身份证 ，Type t1 = typeof(WalkState);  // t1 存着 WalkState 这个类的身份信息  Type t2 = typeof(IdleState);  // t2 存着 IdleState 这个类的身份信息           
 >          
 
 > [!info]- 💡 点击展开查看：第二部分 - `EnterState<T>()` 换班仪式
