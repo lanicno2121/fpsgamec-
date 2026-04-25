@@ -5,13 +5,21 @@
 		{"id":"8ec2d674fc7557fe","x":200,"y":-340,"width":400,"height":50,"color":"1","type":"file","file":"UIManager.md"},
 		{"id":"3d459b71038c4118","x":200,"y":0,"width":400,"height":50,"color":"1","type":"file","file":"GameManager.md"},
 		{"id":"f6ca4c4533e055be","x":200,"y":420,"width":400,"height":50,"color":"1","type":"file","file":"MonoManager.md"},
-		{"id":"f3ff631ac6d758f4","x":200,"y":800,"width":400,"height":50,"color":"1","type":"file","file":"PlayerController.md"}
+		{"id":"f3ff631ac6d758f4","x":200,"y":800,"width":400,"height":50,"color":"1","type":"file","file":"PlayerController.md"},
+		{"id":"8d5f79abdf57817e","x":1040,"y":-340,"width":400,"height":50,"color":"1","type":"file","file":"EnemyBase.md"},
+		{"id":"6fcb45a8ae3d5a55","x":1040,"y":-847,"width":400,"height":50,"color":"1","type":"file","file":"HitFeedbackManager.md"},
+		{"id":"49ebb2179685e9ff","x":1040,"y":-1360,"width":400,"height":50,"color":"1","type":"file","file":"EnemyHealthBarUI.md"},
+		{"id":"dc6ed034eea32116","x":-120,"y":-1200,"width":640,"height":755,"type":"text","text":"### 1. 一句话大白话总结 `UIManager`\n\n它是全游戏 **UI 窗口的“挂载中心”**，专门负责给那些需要在 3D 世界里显示的 UI（比如敌人头顶的血条）提供一个**“统一的停机坪”**。\n### 2. 关键拆解：单词、语法、逻辑\n\n#### 关键语法：继承单例 `SingleMonoBase<UIManager>`\n\n- **代码：** `public class UIManager : SingleMonoBase<UIManager>`\n    \n- **大白话**：这一行代码就是它最牛的地方。它直接继承了我们刚才说的那个“总裁制造机”。\n    \n- **逻辑**：这意味着 `UIManager` 一出生就自带了“全服唯一”的属性。全图任何地方想找 UI 界面，不需要去场景里搜，直接敲 `UIManager.INSTANCE`。\n    \n\n#### 关键词语：`WorldSpaceCanvas` (世界空间画布)\n\n- **代码：** `public GameObject WorldSpaceCanvas;`\n    \n- **大白话**：这是它的核心资产，可以理解为**“ 3D 投影幕布”**。\n    \n- **逻辑**：普通的 UI（如血条、背包）是贴在屏幕屏幕上的。但“世界空间画布”是放在 3D 场景里的。比如你打丧尸，丧尸头顶飘的那个血条，就必须放在这个 `WorldSpaceCanvas` 下面，它才能跟着丧尸在 3D 世界里动。\n- ### 3. 哪些脚本用到了它？（联动关系）\n\n在你的 75 个脚本里，目前与它直接产生联动或逻辑相关的脚本主要是：\n\n1. **`EnemyHealthBarUI.cs` (敌人血条显示)**\n    \n    - **联动逻辑**：当一个丧尸被生成出来时，它头顶的血条 UI 需要知道自己该“挂”在哪个父物体下面。它会通过 `UIManager.INSTANCE.WorldSpaceCanvas` 找到这个“停机坪”，然后把自己粘上去。\n        \n2. **`EnemyBase.cs` (敌人基类)**\n    \n    - **联动逻辑**：在敌人初始化或受到伤害产生 UI 反馈时，通常需要 `UIManager` 提供画布引用。\n        \n3. **`HitFeedbackManager.cs` (命中反馈)**\n    \n    - **联动逻辑**：虽然它有自己的 CanvasGroup，但在一些高级实现里，它需要通过 `UIManager` 来统筹显示的层级，防止被其他 UI 遮挡。\n\n### 4. 关键用法说明\n\n**在 Unity 面板里怎么用？** 你需要在场景里创建一个专门的 `Canvas`（画布），把它设置为 `World Space` 模式，然后把这个物体**拖进 `UIManager` 脚本的 `WorldSpaceCanvas` 这个槽位里**。\n\n**在代码里怎么用？** 当你想在 3D 世界生成一个提示文字时，你会这样写： `GameObject popUp = Instantiate(textPrefab, UIManager.INSTANCE.WorldSpaceCanvas.transform);` 你看，通过 `INSTANCE`，你一行代码就找到了目标，非常丝滑。\n"}
 	],
 	"edges":[
 		{"id":"d7aa050b7a7f5d61","fromNode":"64d80c76a07da372","fromSide":"top","toNode":"92f94354e2870099","toSide":"bottom"},
 		{"id":"6217706c4cc5a9f6","fromNode":"92f94354e2870099","fromSide":"right","toNode":"8ec2d674fc7557fe","toSide":"left"},
 		{"id":"2da10b326f1d4470","fromNode":"92f94354e2870099","fromSide":"right","toNode":"3d459b71038c4118","toSide":"left"},
 		{"id":"c3ae3eabd92d2e9a","fromNode":"92f94354e2870099","fromSide":"right","toNode":"f6ca4c4533e055be","toSide":"left"},
-		{"id":"04e47e87ad9f47c8","fromNode":"92f94354e2870099","fromSide":"right","toNode":"f3ff631ac6d758f4","toSide":"left"}
+		{"id":"04e47e87ad9f47c8","fromNode":"92f94354e2870099","fromSide":"right","toNode":"f3ff631ac6d758f4","toSide":"left"},
+		{"id":"dd74231ba41348fc","fromNode":"8ec2d674fc7557fe","fromSide":"top","toNode":"dc6ed034eea32116","toSide":"bottom"},
+		{"id":"4b9d1512031cc5b9","fromNode":"8ec2d674fc7557fe","fromSide":"right","toNode":"8d5f79abdf57817e","toSide":"left"},
+		{"id":"51911ef516df2768","fromNode":"8ec2d674fc7557fe","fromSide":"right","toNode":"6fcb45a8ae3d5a55","toSide":"bottom"},
+		{"id":"157ead98044dab3f","fromNode":"8ec2d674fc7557fe","fromSide":"right","toNode":"49ebb2179685e9ff","toSide":"bottom"}
 	]
 }
