@@ -1,3 +1,4 @@
+```csharp
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -26,3 +27,4 @@ public class EnemyHealthBarUI : MonoBehaviour {
         healthSlider.fillAmount = healthRation;
     }
 }
+```

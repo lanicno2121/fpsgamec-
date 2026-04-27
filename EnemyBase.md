@@ -1,3 +1,4 @@
+```csharp
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
@@ -304,3 +305,4 @@ public abstract class EnemyBase : MonoBehaviour, IStateMachineOwner
         Destroy(gameObject);
     }
 }
+```

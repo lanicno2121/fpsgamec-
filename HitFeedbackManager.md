@@ -1,3 +1,5 @@
+```csharp
+
 using UnityEngine;
 
 public class HitFeedbackManager : MonoBehaviour
@@ -55,3 +57,4 @@ public class HitFeedbackManager : MonoBehaviour
         }
     }
 }
+```
